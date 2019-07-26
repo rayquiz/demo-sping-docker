@@ -9,6 +9,7 @@ ENV MAVEN_OPTS="-Dmaven.repo.local=/build/.m2/repository"
 
 COPY pom.xml ./
 
+# Les 3 lignes suivantes permettent de réutiliser le cache maven tant que le fichier pom.xml n'est pas modifié
 RUN mvn --batch-mode --fail-never clean verify
 ADD . .
 RUN mvn --batch-mode -Dmaven.test.skip=true package
