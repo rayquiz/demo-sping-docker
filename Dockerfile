@@ -11,8 +11,8 @@ ENV MAVEN_OPTS="-Dmaven.repo.local=/build/.m2/repository"
 
 # On ne copie que le fichier pom.xml dans un premier temps
 COPY pom.xml ./
-# Puis on lance une analyse du pom.xml pour que maven télécharge les dépendances
-RUN mvn --batch-mode --fail-never clean verify
+# Puis on lance "dependency:go-offline" pour que maven télécharge les dépendances
+RUN mvn --batch-mode --fail-never dependency:go-offline
 # On ajoute le reste du code source
 ADD . .
 # On lance le packaging réel
