@@ -26,6 +26,9 @@ FROM openjdk:8-jre-slim as runtime
 WORKDIR /app
 EXPOSE 8080
 
+# Recopie des dépendances depuis l'image du builder
+COPY --from=builder /build/target/dependencies/* ./dependencies/
+
 # Recopie du jar construit dans l'image du builder
 COPY --from=builder /build/target/spring-boot-docker*.jar ./spring-boot-docker.jar
 
